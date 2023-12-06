@@ -1,16 +1,17 @@
 $(document).ready(function(){
-    console.log($('form button')); 
+    console.log($('form button'));
 
-    $('form').on('submit', function(e){
-    e.preventDefault();
-    const listaTarefa = $('lista-tarefa').val();
-    const novoItem = $('<li></li>');
+    $('.lista-tarefa').on('click', 'li', function() {
+        $(this).toggleClass('riscado');
+    });
 
-    $('<form="${listaTarefa}" />').appendTo(novoItem);
+    $('.lista-tarefa-topo').on('submit', function(event) {
+        event.preventDefault();
 
-    $(``).appendTo(novoItem);
-    
+        const novaTarefa = $('#lista-tarefa').val();
 
-    $(novoItem).appendTo('ul');
-    })
-})
+        $('#minha-lista').append('<li>' + novaTarefa + '</li>');
+
+        $('#lista-tarefa').val('');
+    });
+});
